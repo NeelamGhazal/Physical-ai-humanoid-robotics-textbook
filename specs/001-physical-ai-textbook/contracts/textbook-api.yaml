@@ -1,0 +1,661 @@
+openapi: 3.0.3
+info:
+  title: Physical AI & Humanoid Robotics Textbook API
+  description: API for the Physical AI & Humanoid Robotics textbook platform
+  version: 1.0.0
+  contact:
+    name: Textbook API Support
+    email: support@textbook.example.com
+
+servers:
+  - url: https://api.textbook.example.com
+    description: Production server
+  - url: https://staging-api.textbook.example.com
+    description: Staging server
+
+paths:
+  /auth/register:
+    post:
+      summary: Register a new user
+      description: Creates a new user account with background information
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRegistration'
+      responses:
+        '201':
+          description: User successfully registered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '409':
+          $ref: '#/components/responses/Conflict'
+
+  /auth/login:
+    post:
+      summary: Login user
+      description: Authenticates user and returns session token
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserLogin'
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /modules:
+    get:
+      summary: Get all modules
+      description: Retrieve all textbook modules (ROS 2, Gazebo/Unity, Isaac, VLA)
+      tags:
+        - Modules
+      responses:
+        '200':
+          description: List of modules
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ModuleResponse'
+
+  /modules/{module_id}/chapters:
+    get:
+      summary: Get chapters for a module
+      description: Retrieve all chapters for a specific module
+      tags:
+        - Chapters
+      parameters:
+        - name: module_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: List of chapters for the module
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ChapterResponse'
+
+  /chapters/{chapter_id}:
+    get:
+      summary: Get chapter content
+      description: Retrieve chapter content with optional personalization
+      tags:
+        - Chapters
+      parameters:
+        - name: chapter_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: depth
+          in: query
+          description: Content depth level (beginner, intermediate, advanced)
+          schema:
+            type: string
+            enum: [beginner, intermediate, advanced]
+        - name: language
+          in: query
+          description: Language preference (english, roman_urdu)
+          schema:
+            type: string
+            enum: [english, roman_urdu]
+      responses:
+        '200':
+          description: Chapter content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChapterContentResponse'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /chapters/{chapter_id}/progress:
+    get:
+      summary: Get user progress for a chapter
+      description: Retrieve the user's progress in a specific chapter
+      tags:
+        - Progress
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: chapter_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: User progress for the chapter
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChapterProgressResponse'
+    post:
+      summary: Update user progress for a chapter
+      description: Update the user's progress in a specific chapter
+      tags:
+        - Progress
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: chapter_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProgressRequest'
+      responses:
+        '200':
+          description: Progress updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChapterProgressResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /personalization/settings:
+    get:
+      summary: Get user personalization settings
+      description: Retrieve user's personalization preferences
+      tags:
+        - Personalization
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: User personalization settings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonalizationSettingsResponse'
+    post:
+      summary: Update user personalization settings
+      description: Update user's personalization preferences
+      tags:
+        - Personalization
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePersonalizationRequest'
+      responses:
+        '200':
+          description: Personalization settings updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonalizationSettingsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /chatbot/query:
+    post:
+      summary: Ask question to RAG chatbot
+      description: Submit a question to the textbook RAG chatbot
+      tags:
+        - Chatbot
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatbotQueryRequest'
+      responses:
+        '200':
+          description: Chatbot response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatbotQueryResponse'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /translate:
+    post:
+      summary: Translate content to Roman Urdu
+      description: Translate English content to Roman Urdu
+      tags:
+        - Translation
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TranslateRequest'
+      responses:
+        '200':
+          description: Translated content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TranslateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+components:
+  schemas:
+    UserRegistration:
+      type: object
+      required:
+        - email
+        - password
+        - hardware_background
+        - software_background
+      properties:
+        email:
+          type: string
+          format: email
+          description: User's email address
+        password:
+          type: string
+          format: password
+          description: User's password (min 8 chars)
+        username:
+          type: string
+          description: Optional username
+        hardware_background:
+          type: string
+          enum: [beginner, intermediate, advanced]
+          description: User's hardware background level
+        software_background:
+          type: string
+          enum: [beginner, intermediate, advanced]
+          description: User's software background level
+
+    UserLogin:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          format: password
+
+    UserResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        email:
+          type: string
+          format: email
+        username:
+          type: string
+        hardware_background:
+          type: string
+          enum: [beginner, intermediate, advanced]
+        software_background:
+          type: string
+          enum: [beginner, intermediate, advanced]
+        created_at:
+          type: string
+          format: date-time
+
+    LoginResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+          description: JWT access token
+        token_type:
+          type: string
+          default: bearer
+        user:
+          $ref: '#/components/schemas/UserResponse'
+
+    ModuleResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        slug:
+          type: string
+        description:
+          type: string
+        module_type:
+          type: string
+          enum: [ROS 2, Gazebo/Unity, NVIDIA Isaac, VLA]
+        estimated_duration_weeks:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+
+    ChapterResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        slug:
+          type: string
+        module_id:
+          type: string
+          format: uuid
+        order:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+
+    ChapterContentResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        content:
+          type: string
+          description: Chapter content in Markdown/MDX format
+        module:
+          $ref: '#/components/schemas/ModuleResponse'
+        learning_objectives:
+          type: array
+          items:
+            type: string
+        practical_examples:
+          type: array
+          items:
+            type: string
+
+    ChapterProgressResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        user_id:
+          type: string
+          format: uuid
+        chapter_id:
+          type: string
+          format: uuid
+        progress_percentage:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 100
+        current_position:
+          type: integer
+        personalization_level:
+          type: string
+          enum: [beginner, intermediate, advanced]
+        is_roman_urdu:
+          type: boolean
+        last_accessed_at:
+          type: string
+          format: date-time
+        completed_at:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+    UpdateProgressRequest:
+      type: object
+      required:
+        - progress_percentage
+      properties:
+        progress_percentage:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 100
+        current_position:
+          type: integer
+          description: Current position in the chapter (character offset)
+        personalization_level:
+          type: string
+          enum: [beginner, intermediate, advanced]
+        is_roman_urdu:
+          type: boolean
+
+    PersonalizationSettingsResponse:
+      type: object
+      properties:
+        global_settings:
+          type: object
+          properties:
+            content_depth:
+              type: string
+              enum: [beginner, intermediate, advanced]
+            language_preference:
+              type: string
+              enum: [english, roman_urdu]
+        chapter_specific_settings:
+          type: array
+          items:
+            type: object
+            properties:
+              chapter_id:
+                type: string
+                format: uuid
+              content_depth:
+                type: string
+                enum: [beginner, intermediate, advanced]
+              language_preference:
+                type: string
+                enum: [english, roman_urdu]
+
+    UpdatePersonalizationRequest:
+      type: object
+      properties:
+        global_settings:
+          type: object
+          properties:
+            content_depth:
+              type: string
+              enum: [beginner, intermediate, advanced]
+            language_preference:
+              type: string
+              enum: [english, roman_urdu]
+        chapter_specific_settings:
+          type: array
+          items:
+            type: object
+            properties:
+              chapter_id:
+                type: string
+                format: uuid
+              content_depth:
+                type: string
+                enum: [beginner, intermediate, advanced]
+              language_preference:
+                type: string
+                enum: [english, roman_urdu]
+
+    ChatbotQueryRequest:
+      type: object
+      required:
+        - query
+      properties:
+        query:
+          type: string
+          description: User's question to the chatbot
+        context:
+          type: string
+          description: Optional context (e.g., current chapter ID)
+
+    ChatbotQueryResponse:
+      type: object
+      properties:
+        response:
+          type: string
+          description: Chatbot's answer to the query
+        context_used:
+          type: array
+          items:
+            type: string
+            description: Textbook sections referenced in the response
+        query_id:
+          type: string
+          format: uuid
+          description: Unique ID for the query
+
+    TranslateRequest:
+      type: object
+      required:
+        - content
+        - target_language
+      properties:
+        content:
+          type: string
+          description: Content to translate
+        target_language:
+          type: string
+          enum: [roman_urdu]
+          description: Target language for translation
+
+    TranslateResponse:
+      type: object
+      properties:
+        translated_content:
+          type: string
+          description: Translated content
+        source_language:
+          type: string
+          description: Detected source language
+        target_language:
+          type: string
+          description: Target language
+
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              message:
+                type: string
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: unauthorized
+              message:
+                type: string
+                example: Authentication token is missing or invalid
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: not_found
+              message:
+                type: string
+                example: The requested resource was not found
+    Conflict:
+      description: Resource already exists
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: conflict
+              message:
+                type: string
+                example: A user with this email already exists
+    RateLimitExceeded:
+      description: Rate limit exceeded
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: rate_limit_exceeded
+              message:
+                type: string
+                example: You have exceeded the rate limit. Please try again later.
+
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token for authentication
+
+security:
+  - BearerAuth: []

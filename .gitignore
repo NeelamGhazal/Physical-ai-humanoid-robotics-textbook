@@ -1,0 +1,121 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env*
+.venv*/
+venv*/
+
+# Python
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.git/modules/
+.pytest_cache/
+.pyre/
+.pytype/
+celerybeat-schedule
+celerybeat.pid
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Docusaurus
+.docusaurus/
+.cache/
+.dist/
+
+# Backend
+backend/__pycache__/
+backend/*.pyc
+backend/*/__pycache__/
+backend/*/__pycache__/
+backend/.env
+backend/.env.local
+backend/.env.development.local
+backend/.env.test.local
+backend/.env.production.local
+
+# Frontend
+website/node_modules/
+website/.docusaurus/
+website/dist/
+website/build/
+website/coverage/
+website/.env
+website/.env.local
+website/.env.development.local
+website/.env.test.local
+website/.env.production.local
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+.env.local
+.env.production
+.env.development
+
+# Database
+*.db
+*.db-journal
+
+# Testing
+coverage/
+htmlcov/
+.hypothesis/
+
+# Documentation
+docs/_build/
+
+# GitHub
+.github/workflows/cache/
+
+# Alembic
+backend/alembic/versions/*.py
+backend/alembic/env.py
+backend/alembic/script.py.mako

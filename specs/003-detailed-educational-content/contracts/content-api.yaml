@@ -1,0 +1,101 @@
+# Content Access API Contract
+
+## Purpose
+Defines the API contract for accessing educational content programmatically, primarily for the RAG chatbot and search functionality.
+
+## Endpoints
+
+### GET /api/content/{module}/{chapter}
+Retrieves the content of a specific chapter by module and chapter identifier.
+
+**Path Parameters**:
+- `module`: String - the module identifier (ros2, gazebo-unity, nvidia-isaac, vla)
+- `chapter`: String - the chapter identifier (e.g., introduction, topics-rclpy, simulation-basics)
+
+**Response**:
+```json
+{
+  "id": "string",
+  "title": "string",
+  "module": "string",
+  "wordCount": "integer",
+  "learningObjectives": ["string"],
+  "realWorldContext": "string",
+  "technicalContent": "string",
+  "codeSnippets": [
+    {
+      "id": "string",
+      "language": "string",
+      "code": "string",
+      "explanation": "string"
+    }
+  ],
+  "diagramDescriptions": ["string"],
+  "summary": "string",
+  "exercises": ["string"],
+  "relatedChapters": ["string"]
+}
+```
+
+**Status Codes**:
+- 200: Content retrieved successfully
+- 404: Chapter not found
+- 500: Internal server error
+
+### GET /api/content/search
+Searches across all educational content with full-text search capabilities.
+
+**Query Parameters**:
+- `q`: String - search query
+- `module`: String (optional) - limit search to specific module
+- `limit`: Integer (optional) - number of results to return (default: 10, max: 50)
+
+**Response**:
+```json
+{
+  "results": [
+    {
+      "id": "string",
+      "title": "string",
+      "module": "string",
+      "chapter": "string",
+      "excerpt": "string",
+      "relevance": "number"
+    }
+  ],
+  "totalResults": "integer"
+}
+```
+
+**Status Codes**:
+- 200: Search completed successfully
+- 400: Invalid query parameters
+- 500: Search service unavailable
+
+### GET /api/content/modules
+Retrieves a list of all available modules in the textbook.
+
+**Response**:
+```json
+{
+  "modules": [
+    {
+      "id": "string",
+      "name": "string",
+      "description": "string",
+      "chapterCount": "integer",
+      "chapters": [
+        {
+          "id": "string",
+          "title": "string",
+          "path": "string"
+        }
+      ]
+    }
+  ]
+}
+```
+
+**Status Codes**:
+- 200: Modules retrieved successfully
+- 500: Internal server error
