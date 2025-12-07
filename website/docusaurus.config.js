@@ -37,6 +37,12 @@ const config = {
     locales: ['en', 'ur'], // English and Urdu
   },
 
+  clientModules: [
+    './src/client-modules.js',
+  ],
+  stylesheets: [
+    'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&display=swap',
+  ],
   presets: [
     [
       'classic',

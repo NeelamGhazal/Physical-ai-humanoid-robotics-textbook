@@ -29,7 +29,17 @@
       "Bash(.specify/scripts/bash/create-new-feature.sh --json \"Upgrade the textbook UI to a professional publishing standard with the following:\n\n- **Title Page**: Full-viewport hero with centered title, subtitle, and author. Use gradient background (deep indigo to space black), animated subtle particle effect or floating humanoid SVG, and modern sans-serif tech font (Orbitron or Exo 2).\n- **Typography**: \n  - Headings: Orbitron (700–900 weight)\n  - Body: Inter or IBM Plex Sans (clean, readable)\n- **Color Scheme**:\n  - Primary: #00f0ff (neon cyan)\n  - Secondary: #ff2a6d (magenta accent)\n  - Background: #0d0d1a\n  - Text: #e0e0ff\n- **Design Elements**:\n  - Subtle animated borders on cards\n  - Custom section dividers (SVG waves or circuit lines)\n  - Consistent spacing (use Tailwind spacing scale)\n  - Print-friendly margins (avoid absolute positioning)\n- **Headers & Footers**:\n  - Sticky navbar with logo + navigation\n  - Footer with copyright, social links, Urdu toggle\n- **Responsive**: Works on mobile, tablet, desktop\n- **Accessibility**: WCAG AA contrast compliance\n\nAll UI must be implemented using Tailwind CSS inside Docusaurus v3 with MDX support.\" --number 3 --short-name \"ui-ux-enhancements\")",
       "Bash(.specify/scripts/bash/create-phr.sh --title \"Create UI UX enhancements specification\" --stage spec --feature 003-ui-ux-enhancements --json)",
       "Bash(.specify/scripts/bash/check-prerequisites.sh --json --paths-only)",
-      "Bash(.specify/scripts/bash/update-agent-context.sh claude)"
+      "Bash(.specify/scripts/bash/update-agent-context.sh claude)",
+      "Bash(npm install -D tailwindcss postcss autoprefixer)",
+      "Bash(npx tailwindcss init -p)",
+      "Bash(./node_modules/.bin/tailwindcss init -p)",
+      "Bash(npm install tailwindcss postcss autoprefixer --save-dev)",
+      "Bash(npx --no-install tailwindcss init -p)",
+      "Bash(npm install)",
+      "Bash(npx tailwindcss@latest init -p)",
+      "Bash(npm install i18next react-i18next i18next-http-backend)",
+      "Bash(npm install i18next-browser-languagedetector)",
+      "Bash(npm install framer-motion)"
     ],
     "deny": [],
     "ask": []
