@@ -13,15 +13,15 @@ const config = {
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://your-organization.github.io',
+  url: 'https://NeelamGhazal.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/AI-Book',
+  baseUrl: '/Physical-ai-humanoid-robotics-textbook',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'your-organization', // Usually your GitHub org/user name.
-  projectName: 'AI-Book', // Usually your repo name.
+  organizationName: 'NeelamGhazal', // Usually your GitHub org/user name.
+  projectName: 'AI-Physical-ai-humanoid-robotics-textbook', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -89,7 +89,7 @@ const config = {
           },
           {to: '/blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://github.com/your-organization/your-repo',
+            href: 'https://github.com/NeelamGhazal/Physical-ai-humanoid-robotics-textbook',
             label: 'GitHub',
             position: 'right',
           },
