@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://your-organization.github.io/AI-Book/blog</id>
+    <id>https://NeelamGhazal.github.io/Physical-ai-humanoid-robotics-textbook/blog</id>
     <title>Physical AI &amp; Humanoid Robotics Blog</title>
     <updated>2025-12-06T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://your-organization.github.io/AI-Book/blog"/>
+    <link rel="alternate" href="https://NeelamGhazal.github.io/Physical-ai-humanoid-robotics-textbook/blog"/>
     <subtitle>Physical AI &amp; Humanoid Robotics Blog</subtitle>
-    <icon>https://your-organization.github.io/AI-Book/img/favicon.ico</icon>
+    <icon>https://NeelamGhazal.github.io/Physical-ai-humanoid-robotics-textbook/img/favicon.ico</icon>
     <entry>
         <title type="html"><![CDATA[Welcome to the Physical AI & Humanoid Robotics Textbook]]></title>
-        <id>https://your-organization.github.io/AI-Book/blog/welcome</id>
-        <link href="https://your-organization.github.io/AI-Book/blog/welcome"/>
+        <id>https://NeelamGhazal.github.io/Physical-ai-humanoid-robotics-textbook/blog/welcome</id>
+        <link href="https://NeelamGhazal.github.io/Physical-ai-humanoid-robotics-textbook/blog/welcome"/>
         <updated>2025-12-06T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[We're excited to announce the launch of our comprehensive textbook on Physical AI & Humanoid Robotics! This interactive textbook is designed to provide students and developers with a deep understanding of embodied artificial intelligence.]]></summary>
         <content type="html"><![CDATA[<p>We're excited to announce the launch of our comprehensive textbook on Physical AI &amp; Humanoid Robotics! This interactive textbook is designed to provide students and developers with a deep understanding of embodied artificial intelligence.</p>
-<h2 class="anchor anchorTargetStickyNavbar_tleR" id="what-youll-learn">What You'll Learn<a href="https://your-organization.github.io/AI-Book/blog/welcome#what-youll-learn" class="hash-link" aria-label="Direct link to What You'll Learn" title="Direct link to What You'll Learn" translate="no">​</a></h2>
+<h2 class="anchor anchorTargetStickyNavbar_tleR" id="what-youll-learn">What You'll Learn<a href="https://neelamghazal.github.io/Physical-ai-humanoid-robotics-textbook/blog/welcome#what-youll-learn" class="hash-link" aria-label="Direct link to What You'll Learn" title="Direct link to What You'll Learn" translate="no">​</a></h2>
 <p>Our textbook covers four core modules that form the foundation of modern robotics:</p>
 <ul>
 <li class=""><strong>ROS 2</strong>: The Robot Operating System for building robotic applications</li>
@@ -22,7 +22,7 @@
 <li class=""><strong>NVIDIA Isaac</strong>: Advanced robotics frameworks for AI-powered robots</li>
 <li class=""><strong>Vision-Language Actions (VLA)</strong>: The intersection of perception, language, and action</li>
 </ul>
-<h2 class="anchor anchorTargetStickyNavbar_tleR" id="interactive-learning-experience">Interactive Learning Experience<a href="https://your-organization.github.io/AI-Book/blog/welcome#interactive-learning-experience" class="hash-link" aria-label="Direct link to Interactive Learning Experience" title="Direct link to Interactive Learning Experience" translate="no">​</a></h2>
+<h2 class="anchor anchorTargetStickyNavbar_tleR" id="interactive-learning-experience">Interactive Learning Experience<a href="https://neelamghazal.github.io/Physical-ai-humanoid-robotics-textbook/blog/welcome#interactive-learning-experience" class="hash-link" aria-label="Direct link to Interactive Learning Experience" title="Direct link to Interactive Learning Experience" translate="no">​</a></h2>
 <p>Unlike traditional textbooks, our platform offers:</p>
 <ul>
 <li class="">Interactive code examples you can run directly in the browser</li>
@@ -31,7 +31,7 @@
 <li class="">Personalized learning paths based on your background</li>
 <li class="">Support for multiple languages including Roman Urdu</li>
 </ul>
-<h2 class="anchor anchorTargetStickyNavbar_tleR" id="who-is-this-for">Who Is This For?<a href="https://your-organization.github.io/AI-Book/blog/welcome#who-is-this-for" class="hash-link" aria-label="Direct link to Who Is This For?" title="Direct link to Who Is This For?" translate="no">​</a></h2>
+<h2 class="anchor anchorTargetStickyNavbar_tleR" id="who-is-this-for">Who Is This For?<a href="https://neelamghazal.github.io/Physical-ai-humanoid-robotics-textbook/blog/welcome#who-is-this-for" class="hash-link" aria-label="Direct link to Who Is This For?" title="Direct link to Who Is This For?" translate="no">​</a></h2>
 <p>This textbook is designed for:</p>
 <ul>
 <li class="">University students studying robotics or AI</li>
@@ -39,8 +39,8 @@
 <li class="">Researchers exploring embodied AI</li>
 <li class="">Engineers working on robotic systems</li>
 </ul>
-<h2 class="anchor anchorTargetStickyNavbar_tleR" id="get-started">Get Started<a href="https://your-organization.github.io/AI-Book/blog/welcome#get-started" class="hash-link" aria-label="Direct link to Get Started" title="Direct link to Get Started" translate="no">​</a></h2>
-<p>Ready to dive into the fascinating world of Physical AI? Start with our <a class="" href="https://your-organization.github.io/AI-Book/docs/intro">Introduction</a> and begin your journey into humanoid robotics today!</p>]]></content>
+<h2 class="anchor anchorTargetStickyNavbar_tleR" id="get-started">Get Started<a href="https://neelamghazal.github.io/Physical-ai-humanoid-robotics-textbook/blog/welcome#get-started" class="hash-link" aria-label="Direct link to Get Started" title="Direct link to Get Started" translate="no">​</a></h2>
+<p>Ready to dive into the fascinating world of Physical AI? Start with our <a class="" href="https://neelamghazal.github.io/Physical-ai-humanoid-robotics-textbook/docs/intro">Introduction</a> and begin your journey into humanoid robotics today!</p>]]></content>
         <category label="textbook" term="textbook"/>
         <category label="robotics" term="robotics"/>
         <category label="ai" term="ai"/>
