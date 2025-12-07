@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunktextbook=globalThis.webpackChunktextbook||[]).push([[667],{6036:o=>{o.exports=JSON.parse('{"metadata":{"permalink":"/AI-Book/ur/blog","page":1,"postsPerPage":10,"totalPages":1,"totalCount":1,"blogDescription":"Blog","blogTitle":"Blog"}}')}}]);
