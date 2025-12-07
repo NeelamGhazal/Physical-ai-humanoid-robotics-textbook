@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunktextbook=globalThis.webpackChunktextbook||[]).push([[472],{5513:e=>{e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"Welcome to the Physical AI & Humanoid Robotics Textbook","permalink":"/Physical-ai-humanoid-robotics-textbook/ur/blog/welcome","unlisted":false,"date":"2025-12-06T00:00:00.000Z"}]}')}}]);
